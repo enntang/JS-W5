@@ -1,0 +1,47 @@
+img {
+    width: 100%;
+}
+h3{
+    padding: 4px;
+    color: #00807e;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 3px solid #00807e;
+}
+
+
+.editor-block {
+    padding: 60px 90px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 12px;
+
+}
+
+.result-area {
+    background: #F7F7F7;
+}
+
+.card {
+    position: relative;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+}
+
+.tag-location,
+.tag-rank {
+    position: absolute;
+    top: -10px;
+    color: white;
+    border-radius: 2px;
+}
+
+.tag-location {
+    background-color: #64c3bf;
+    padding: 8px 20px;
+}
+
+.tag-rank {
+    background-color: #00807e;
+    padding: 8px;
+}
