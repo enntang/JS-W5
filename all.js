@@ -55,6 +55,9 @@ let data = [
     },
 ];
 
+//定義文件中的關鍵位置
+const selector = document.querySelector("#location-selector");
+const resultNum = document.querySelector("#resultNum");
 const resultListRow = document.querySelector("#result-list-row");
 
 //定義出執行渲染的條件
@@ -83,12 +86,13 @@ function renderData(data) {
                         </div>
                     </div>`;
     });
+    //顯示搜尋結果數量
+    resultNum.textContent = `本次搜尋共${data.length}筆資料`
 };
 
 renderData(data);
 
-//在文件中找到下拉選單
-const selector = document.querySelector("#location-selector");
+
 
 //將原始資料和selector之間做對應，並且更新渲染結果
 function filterData() {
