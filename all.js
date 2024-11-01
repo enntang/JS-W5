@@ -57,47 +57,60 @@ let data = [
 
 const resultListRow = document.querySelector("#result-list-row");
 
-data.forEach(function (items) {
-    resultListRow.innerHTML +=
-        `
-        <div class="col-4">
+//定義出執行渲染的條件
+function renderData(data) {
+    //渲染出旅遊行程卡片
+    data.forEach(function (item) {
+        resultListRow.innerHTML +=
+            `<div class="col-4">
                         <div class="card">
-                            <p class="tag-location">${items.location}</p>
-                            <img src="${items.imgUrl}" alt="">
+                            <p class="tag-location">${item.location}</p>
+                            <img src="${item.imgUrl}" alt="">
                             <div class="d-flex flex-column p-3 position-relative h-100">
-                                <p class="tag-rank">${items.rank}</p>
-                                <h3 class="mb-2">${items.title}</h3>
+                                <p class="tag-rank">${item.rank}</p>
+                                <h3 class="mb-2">${item.title}</h3>
                                 <p class="description">
-                                ${items.description}
+                                ${item.description}
                                 </p>
                                 <div class="price-block d-flex justify-content-between align-items-center">
-                                    <p>${items.lastNum}</p>
+                                    <p>${item.lastNum}</p>
                                     <div class="d-flex align-items-center">
                                     <p>TWD</p>
-                                    <p class="price">${items.price}</p>
+                                    <p class="price">${item.price}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-        `
-        ;
-});
+                    </div>`;
+    });
+};
+
+renderData(data);
 
 //在文件中找到下拉選單
 const selector = document.querySelector("#location-selector");
 
-//將原始資料和selector之間做對應
+//將原始資料和selector之間做對應，並且更新渲染結果
 function filterData() {
-    //先定義一個空陣列當容器
+    //清空舊的渲染結果
+    resultListRow.innerHTML = "";
+    //定義一個空陣列當容器
     let filterResult = [];
-    data.forEach(function (item) {
-        //當資料中的地區和selector的value相同時，觸發function將資料推到陣列
-        if (item.location === selector.value) {
-            filterResult.push(item);
-        };
-       console.log(filterResult)
-    });
+    //設定篩選條件
+    if (selector.value === "全部地區") {
+        //全部地區的時候，陣列即等於初始資料的全部範圍
+        filterResult = data;
+    } else {
+        data.forEach(function (item) {
+            //當資料中的地區和selector的value相同時，觸發function將符合條件的資料推到陣列
+            if (item.location === selector.value) {
+                filterResult.push(item);
+            };
+        });
+    }
+
+    //地區符合當前選項的資料，會儲存在filterResult裡面，此時抓filterResult裡的資料做渲染
+    renderData(filterResult);
 };
 
 
