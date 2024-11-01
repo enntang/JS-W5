@@ -64,19 +64,44 @@ data.forEach(function (items) {
                         <div class="card">
                             <p class="tag-location">${items.location}</p>
                             <img src="${items.imgUrl}" alt="">
-                            <div class="d-flex flex-column p-2 position-relative">
+                            <div class="d-flex flex-column p-3 position-relative h-100">
                                 <p class="tag-rank">${items.rank}</p>
-                                <h3>${items.title}</h3>
+                                <h3 class="mb-2">${items.title}</h3>
                                 <p class="description">
                                 ${items.description}
                                 </p>
-                                <div class="d-flex justify-content-between">
+                                <div class="price-block d-flex justify-content-between align-items-center">
                                     <p>${items.lastNum}</p>
-                                    <p><span>TWD</span>${items.price}</p>
+                                    <div class="d-flex align-items-center">
+                                    <p>TWD</p>
+                                    <p class="price">${items.price}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
         `
         ;
+});
+
+//在文件中找到下拉選單
+const selector = document.querySelector("#location-selector");
+
+//將原始資料和selector之間做對應
+function filterData() {
+    //先定義一個空陣列當容器
+    let filterResult = [];
+    data.forEach(function (item) {
+        //當資料中的地區和selector的value相同時，觸發function將資料推到陣列
+        if (item.location === selector.value) {
+            filterResult.push(item);
+        };
+       console.log(filterResult)
+    });
+};
+
+
+//監聽selector，當使用者改變（change）選項時，觸發function
+selector.addEventListener("change", function () {
+    filterData();
 });
